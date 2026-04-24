@@ -11,7 +11,7 @@ def create_user_account():
     last = input("your last name ")
     email = input("your email ")
     age = input("your age ")
-    mistake_cap = 1
+    mistake_cap = 10000000
     while not age.isdigit() and mistake_cap > 0:
         #nums only
         mistake_cap -= 1
