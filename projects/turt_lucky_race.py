@@ -5,6 +5,10 @@ colors = [
     "red", "crimson", "green", "blue", "teal",
     "aquamarine", "pink", "yellow", "cyan", "gold"
 ]
+shapes = [
+    "turtle", "arrow", "circle", "square", "triangle",
+    "classic", "turtle", "arrow", "circle", "square"
+]
 
 racers = []
 
@@ -26,8 +30,10 @@ def setup_race(num_players):
 
     for i in range(num_players):
         racer = turtle.Turtle()
-        racer.shape("turtle")
+
+        racer.shape(shapes[i])
         racer.color(colors[i])
+
         racer.penup()
 
         y_position = start_y + i * spacing
@@ -46,9 +52,20 @@ def draw_finish():
     line.left(90)
     line.forward(440)
 
+def start_race():
+    winner = None
+    while winner is None:
+        for racer in racers:
+            racer.forward(random.randint(1,50))
+            if racer.xcor() >= 300:
+                winner = racer
+                break
+    print('Winner:', winner.pencolor())        
+
+
 # var = some_returning_func()
 player_amount = get_num_of_players()
 setup_race(player_amount)
 draw_finish()
-
+start_race()
 turtle.done()
