@@ -1,8 +1,15 @@
 from fastapi import FastAPI, HTTPException
 from schemas import NumInput
-
+from fastapi.middleware.cors import CORSMiddleware
 # our server
 bob_server = FastAPI()
+bob_server.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 # routes = endpoints of a website
 # methods: GET, POST
@@ -12,7 +19,7 @@ bob_server = FastAPI()
 @bob_server.get('/home')
 def home():
     return {
-        'calculator':'basicly chatgpt'
+        'menu':''
     }
 
 # add route
